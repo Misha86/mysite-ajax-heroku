@@ -1,16 +1,14 @@
-<!DOCTYPE html PUBLIC “-//W3C//DTD HTML 4.01//EN”
-“http://www.w3.org/TR/html4/strict.dtd”>
-<html lang=”ru”>
-<head>
-<title>Страница недоступна</title>
-</head>
+{% extends "base.html" %} {% load staticfiles %} {% load my_filters %} {% load i18n %} {% load humanize %}
 
-<body>
-<h1>500 Страница недоступна</h1>
 
-<p>Извините, запрошенная страница недоступна из-за неполадок на сервере.</p>
+{% block title %} Страница недоступна {% endblock %}
 
-<p>Инженеры извещены, зайдите, пожалуйста, попозже.</p>
-</body>
+{% block content %}
 
-</html>
+    <h1>500 Страница недоступна</h1>
+
+    <p>Извините, запрошенная страница недоступна из-за неполадок на сервере.</p>
+
+    <p>Инженеры извещены, зайдите, пожалуйста, попозже.</p>
+
+{% endblock %}
