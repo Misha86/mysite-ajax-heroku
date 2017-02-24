@@ -189,18 +189,17 @@ PASSWORD_RESET_TIMEOUT_DAYS = 1
 MESSAGE_LEVEL = message_constants.DEBUG
 
 
-# # SMTP backend(default) for send email
-#
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#
-# EMAIL_HOST = 'smtp.gmail.com'                # Имя хоста используемое для отправки электронных писем. По умолчанию 'localhost'
-# EMAIL_HOST_USER = 'yourgmail@gmail.com'      # Имя пользователя используемое при подключении к SMTP серверу указанному в EMAIL_HOST
-# EMAIL_HOST_PASSWORD = 'yourpassword'         # Пароль для подключения к SMTP сервера, который указан в EMAIL_HOST
-# EMAIL_SUBJECT_PREFIX = '[Django]'            # Префикс добавляемый к теме электронного письма
-# EMAIL_PORT = 587                             # Порт, используемый при подключении к SMTP серверу указанному в EMAIL_HOST.
-# EMAIL_USE_TLS = True                         # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 587 порт.
-# EMAIL_USE_SSL = False                        # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 465 порт.
-# # Обратите внимание, EMAIL_USE_TLS/EMAIL_USE_SSL взаимоисключающие, только одна настройка может быть True.                    # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 465 порт.
+# SMTP backend(default) for send email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'                    # Имя хоста используемое для отправки электронных писем. По умолчанию 'localhost'
+EMAIL_HOST_USER = "mpolishchuk1986@gmail.com"      # Имя пользователя используемое при подключении к SMTP серверу указанному в EMAIL_HOST
+EMAIL_HOST_PASSWORD = '0967478910m'                 # Пароль для подключения к SMTP сервера, который указан в EMAIL_HOST
+EMAIL_SUBJECT_PREFIX = '[Django]'              # Префикс добавляемый к теме электронного письма
+EMAIL_PORT = 587                               # Порт, используемый при подключении к SMTP серверу указанному в EMAIL_HOST 2525.
+EMAIL_USE_TLS = True                         # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 587 порт .
+#EMAIL_USE_SSL = True                          # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 465 порт.
 
 
 LOGIN_URL = 'loginsys:login'                      # '/auth/login/'    It`s for @login_required().
