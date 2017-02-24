@@ -67,6 +67,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'log_request_id.middleware.RequestIDMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',     # Django может уведомлять вас о неработающих ссылках
     'django.middleware.locale.LocaleMiddleware',               # add this line after the SessionMiddleware for translate
@@ -260,47 +261,41 @@ CACHES = {
 CACHE_MIDDLEWARE_SECONDS = 1800
 CACHE_MIDDLEWARE_KEY_PREFIX = 'blog'
 
+# Support for X-Request-ID
+
+LOG_REQUEST_ID_HEADER = 'HTTP_X_REQUEST_ID'
+LOG_REQUESTS = True
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
-            },
-        },
+    'disable_existing_loggers': False,
     'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse',
-            }
+        'request_id': {
+            '()': 'log_request_id.filters.RequestIDFilter'
+        }
     },
+    'formatters': {
+        'standard': {
+            'format': '%(levelname)-8s [%(asctime)s] [%(request_id)s] %(name)s: %(message)s'
+        },
+        },
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': os.path.join(BASE_DIR, 'log/debug.log'),
-            },
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-            },
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'verbose',
+            'filters': ['request_id'],
+            'formatter': 'standard',
             },
         },
     'loggers': {
-        'django.request': {
-            'handlers': ['console', 'mail_admins', 'file'],
+        'log_request_id.middleware': {
+            'handlers': ['console'],
             'level': 'DEBUG',
-            'propagate': True,
+            'propagate': False,
             },
-        },
-    }
+        }
+}
+
 
 # отключить отчёты о 404 ошибке URL страницы заканчивается
 import re
