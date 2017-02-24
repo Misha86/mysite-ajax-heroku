@@ -1,0 +1,112 @@
+[
+{
+  "model": "navigation.menuitem",
+  "pk": 1,
+  "fields": {
+    "menu_title": "\u041f\u0440\u043e \u0441\u0435\u0431\u0435",
+    "menu_name": "pro-sebe",
+    "menu_number": 1,
+    "menu_url": "/about/",
+    "menu_type": "single"
+  }
+},
+{
+  "model": "navigation.menuitem",
+  "pk": 2,
+  "fields": {
+    "menu_title": "\u0413\u043e\u043b\u043e\u0432\u043d\u0430",
+    "menu_name": "golovna",
+    "menu_number": 2,
+    "menu_url": "/",
+    "menu_type": "single"
+  }
+},
+{
+  "model": "navigation.menuitem",
+  "pk": 4,
+  "fields": {
+    "menu_title": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u0438",
+    "menu_name": "kontakti",
+    "menu_number": 3,
+    "menu_url": "/contacts/",
+    "menu_type": "single"
+  }
+},
+{
+  "model": "navigation.menuitem",
+  "pk": 5,
+  "fields": {
+    "menu_title": "3D Max",
+    "menu_name": "3d-max",
+    "menu_number": 4,
+    "menu_url": "",
+    "menu_type": "dropdown"
+  }
+},
+{
+  "model": "navigation.menuitem",
+  "pk": 6,
+  "fields": {
+    "menu_title": "\u0406\u043d\u0442\u0435\u0440\u0435\u0441\u0438",
+    "menu_name": "interesi",
+    "menu_number": 5,
+    "menu_url": "",
+    "menu_type": "dropdown"
+  }
+},
+{
+  "model": "navigation.menuitem",
+  "pk": 7,
+  "fields": {
+    "menu_title": "\u0424\u043e\u0442\u043e",
+    "menu_name": "foto",
+    "menu_number": 6,
+    "menu_url": "/foto/list/",
+    "menu_type": "single"
+  }
+},
+{
+  "model": "navigation.category",
+  "pk": 2,
+  "fields": {
+    "category_title": "\u0413\u0430\u043b\u0435\u0440\u0435\u044f \u0440\u043e\u0431\u0456\u0442",
+    "category_name": "galereya-robit",
+    "menu_category": 5,
+    "category_number": 1,
+    "category_url": "blog:article_list"
+  }
+},
+{
+  "model": "navigation.category",
+  "pk": 3,
+  "fields": {
+    "category_title": "\u0412\u0456\u0434\u0435\u043e \u0443\u0440\u043e\u043a\u0438",
+    "category_name": "video-uroki",
+    "menu_category": 5,
+    "category_number": 2,
+    "category_url": "blog:article_list"
+  }
+},
+{
+  "model": "navigation.category",
+  "pk": 4,
+  "fields": {
+    "category_title": "\u0411\u043b\u043e\u0433",
+    "category_name": "blog",
+    "menu_category": 5,
+    "category_number": 3,
+    "category_url": "blog:article_list"
+  }
+},
+{
+  "model": "navigation.category",
+  "pk": 5,
+  "fields": {
+    "category_title": "Django",
+    "category_name": "django",
+    "menu_category": 6,
+    "category_number": 1,
+    "category_url": "blog:article_list"
+  }
+}
+]

@@ -304,3 +304,5 @@ IGNORABLE_404_URLS = (
     re.compile(r'^/favicon\.ico$'),
     re.compile(r'^/robots\.txt$'),
 )
+
+FIXTURE_DIRS = [os.path.join(BASE_DIR, 'navigation', 'fixtures', 'navigation')]
