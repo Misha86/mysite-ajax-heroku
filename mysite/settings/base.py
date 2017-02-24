@@ -282,10 +282,7 @@ IGNORABLE_404_URLS = (
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
@@ -296,6 +293,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'blog', 'static', 'blog'),
     os.path.join(BASE_DIR, 'languages', 'static', 'languages/img'),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 
