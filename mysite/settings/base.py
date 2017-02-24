@@ -159,27 +159,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'comment', 'static', 'comment'),
-    os.path.join(BASE_DIR, 'loginsys', 'static', 'loginsys'),
-    os.path.join(BASE_DIR, 'blog', 'static', 'blog'),
-    os.path.join(BASE_DIR, 'languages', 'static', 'languages/img'),
-)
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
-
 FIRST_DAY_OF_WEEK = 1
 
 LOGIN_REDIRECT_URL = '/'
@@ -203,12 +182,7 @@ EMAIL_PORT = 587                               # Порт, используем�
 EMAIL_USE_TLS = True                         # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 587 порт .
 #EMAIL_USE_SSL = True                          # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 465 порт.
 
-
-LOGIN_URL = 'loginsys:login'                      # '/auth/login/'    It`s for @login_required().
-
 LOGOUT_URL = 'loginsys:logout'                    # '/auth/logout/'
-
-LOGIN_REDIRECT_URL = '/'
 
 DEFAULT_FROM_EMAIL = 'mishaelitzem2@rambler.ru'
 
@@ -305,5 +279,26 @@ IGNORABLE_404_URLS = (
     re.compile(r'^/favicon\.ico$'),
     re.compile(r'^/robots\.txt$'),
 )
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'comment', 'static', 'comment'),
+    os.path.join(BASE_DIR, 'loginsys', 'static', 'loginsys'),
+    os.path.join(BASE_DIR, 'blog', 'static', 'blog'),
+    os.path.join(BASE_DIR, 'languages', 'static', 'languages/img'),
+)
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'navigation', 'fixtures', 'navigation')]
