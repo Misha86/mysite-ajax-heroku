@@ -1,0 +1,69 @@
+{% extends "base.html" %}{% load staticfiles %} {% load i18n %}
+
+
+
+{% block scripts %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+{% endblock scripts %}
+
+
+{% block content %}
+
+    <!-- Content -->
+    <div class="col-lg-12 jumbotron">
+        <h1>Hello, world!</h1>
+        <p>Кілька місяців тому я проводив вебінар для початківців, де розказував про 5 перешкод на дорозі
+            людини, що починає шлях до своєї першої роботи програміста. В даному вебінару ми пройшлись по
+            найпроблемніших місцях і я спробував дати подальші інструкції щодо розгрібання даних каменів
+            спотикання.</p>
+    </div>
+
+    <div id="mail-form" class="col-lg-4 col-md-5 col-sm-5 col-xs-6 jumbotron">
+
+        {% include "partial_mail_form.html" %}
+
+    </div>
+
+    {% if users %}
+        <div class="col-lg-7 col-md-6 col-sm-6 col-xs-5 pull-right jumbotron">
+        <div>
+            <h1 id="list-users" class="text-center">Зареєстровані користувачі</h1>
+        </div>
+        <div class="row">
+            {% for user in users %}
+                <div id="people" class="col-lg-2 col-sm-4 col-xs-6 text-center">
+                    {#                    <img src="{{ user.avatar.url }}" class="img-circle" width="70px" height="70px">#}
+                    <img src="{{ user.avatar.url }}" class="{% cycle 'img-circle' 'img-rounded'  %}" width="70px" height="70px">
+                    <h5>{{ user.user.username }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% if users.has_other_pages %}
+    <div id="pagination" class="row pg-users">
+        <ul class="pagination pagination-sm">
+            {% if users.has_previous %}
+                <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="">&laquo;</a></li>
+            {% endif %}
+            {% for page in users.paginator.page_range %}
+                {% if page == users.number %}
+                    <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                {% endif%}
+            {% endfor %}
+            {% if users.has_next %}
+                <li><a href="?page={{ users.next_page_number }}">&raquo</a></li>
+            {% else %}
+                <li class="disabled"><a href="">&raquo</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
+</div>
+
+{% endblock %}

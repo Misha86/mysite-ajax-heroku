@@ -1,0 +1,12 @@
+
+
+<form id="form-massage" class="form-row" action="{% url 'comment:create' article.id %}" method="POST">
+    <fieldset>
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form }}
+            <button id="btn-submit" type="submit" class="btn btn-primary">добавити коментар</button>
+        </div>
+    </fieldset>
+</form>
+

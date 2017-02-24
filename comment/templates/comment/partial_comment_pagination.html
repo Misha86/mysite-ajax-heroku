@@ -1,0 +1,21 @@
+
+
+<div id="pagination" class="col-lg-10  col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <ul class="pager">
+        {% if comments.has_previous %}
+            <li class="previous"><a href="?page={{ comments.previous_page_number }}">← Новіші коментарі</a></li>
+        {% else %}
+            <li class="previous disabled"><a href="">← Новіші коментарі</a></li>
+        {% endif %}
+        {% if comments.has_next %}
+            <li class="next"><a href="?page={{ comments.next_page_number }}">Старіші коментарі →</a></li>
+        {% else %}
+            <li class="next disabled"><a href="">Старіші коментарі →</a></li>
+        {% endif %}
+        <style>
+            .article.well {
+                margin-bottom: 10px;
+            }
+        </style>
+    </ul>
+</div>

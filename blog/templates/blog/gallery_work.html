@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% load staticfiles %} {% load i18n %} {% load markdown_deux_tags %}
+
+
+{% block title %}3D MAX | {{ article.article_title|capfirst }}{% endblock %}
+
+{% block scripts %}
+
+    <script src="{% static 'js/comment.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+
+    <script>
+    $(function(){
+        $(".content-mardown").each(function(){
+            var content = $(this)
+            content.html(marked(content.text()))
+            $("p img").addClass("img-responsive")
+        });
+    })
+
+    </script>
+
+{% endblock scripts %}
+
+
+{% block style %}{% endblock %}
+
+
+{% block content %}
+
+    {% if user.is_superuser %}
+        <div class="row">
+            <div class="col-md-3">
+                <a class="create_update"
+                   href="{% url 'blog:article_update' item_slug=article.article_category.menu_category.menu_name category_slug=article.article_category.category_name article_slug=article.article_slug %}"><h3>{% trans 'Змінити статтю?' %}</h3></a>
+            </div>
+            <div class="col-md-3 pull-right">
+                <a class="create_update" href="{% url 'blog:article_delete' item_slug=article.article_category.menu_category.menu_name category_slug=article.article_category.category_name article_slug=article.article_slug %}"><h3>{% trans 'Видалити статтю?' %}</h3></a>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- gallery_work -->
+    <div id="work_3d_max">
+        {% if article.article_image %}
+            <img class="img-responsive img-thumbnail" src="{{article.article_image.url}}" alt="{{ article.article_title }}"/>
+        {% endif %}
+        <div class="image_title article">
+            <ul class="likes">
+                <li>
+                    <a href="{% url 'blog:add_like' article.id %}"><img src="{% static 'blog/like.png' %}"></a>
+                </li>
+                <li>
+                    <h5>{{ article.article_likes }}</h5>
+                </li>
+            </ul>
+        </div>
+        <h4>{{ article.article_title }}</h4>
+    </div>
+    <div class="well">
+        <div class="content-mardown">{{ article.article_text }}</div>
+    </div>
+
+    {% if comments %}
+
+        <div id="comments_list" class="col-lg-7 col-md-7 col-sm-9 well">
+
+            {% include 'partial_comments_list.html' %}
+
+        </div>
+
+    {% endif %}
+
+    {% if user.is_authenticated %}
+
+        <div id="comment-form" class="col-lg-6 col-md-6 col-sm-8 article well">
+
+            {% include 'partial_comment_form.html' %}
+
+        </div>
+
+    {% endif %}
+
+    {% if comments.has_other_pages %}
+
+        {% include 'partial_comment_pagination.html' %}
+
+    {% endif %}
+
+{% endblock %}

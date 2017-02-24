@@ -1,0 +1,40 @@
+{% load staticfiles %} {% load my_filters %} {% load i18n %} {% load humanize %}
+
+<!-- gallery_works -->
+<div id="works_3d_max">
+    {% for articless in articles %}
+        <div class="row">
+            {% for article in articless %}
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    {% if article.article_image %}
+                        <div class="d3_image">
+                            <a href="{{ article.get_absolute_url }}" title="{{ article.article_title }}"><img class="img-responsive img-rounded" src="{{article.article_image.url}}" alt="{{ article.article_title }}"/></a>
+                        </div>
+                    {% endif %}
+                    <div class="image_title">
+                        <ul>
+                            <li>
+                                <ul class="likes">
+                                    <li><a href="{% url 'blog:add_like' article.id %}"><img src="{% static 'blog/like.png' %}"></a></li>
+                                    <li> <h5>{{ article.article_likes }}</h5></li>
+                                    <li style="float: right"><h5>Створена: {{ article.article_date|naturaltime }}</h5></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ article.get_absolute_url }}"><h4>{{ article.article_title }}</h4></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            {% empty %}
+
+                <div class="col-md-10 col-md-offset-2">
+                    <h2>Даний список покищо пустий!</h2>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+

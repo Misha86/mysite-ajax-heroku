@@ -1,0 +1,11 @@
+
+<form id="form-massage" action="{% url 'blog:send_mail_ajax' %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        {{ field.errors }}
+        {{ field }}
+    {% endfor %}
+    {#                      <input  value="{{email}}" type="text" class="form-control" name="email" id="email" placeholder="введіть Ваш e-mail">#}
+    {#                      <textarea rows="7" value="{{massage}}" class="form-control"  name="massage" id="massage" placeholder="введіть текст повідомлення для відправлення"></textarea>#}
+    <button type="submit" class="btn btn-primary">відправити повідомлення</button>
+</form>

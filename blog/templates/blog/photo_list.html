@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% load staticfiles %} {% load my_filters %} {% load i18n %}
+
+
+{% block title %}{{ menu_item.menu_title }} {% endblock %}
+
+{% block scripts %}
+
+    <!-- Put this script tag to the <head> of your page -->
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?136"></script>
+
+{% endblock %}
+
+
+{% block style %}
+
+    <style>
+        html, body {
+            background-image: url("/static/img/2.jpg");
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% if user.is_superuser %}
+        <div class="row">
+            <div class="col-md-12">
+                <a class="create_update" href="{% url 'blog:article_create' item_slug=category.menu_category.menu_name category_slug=category.category_name %}"><h3>{% trans 'Створити нову статтю?' %}</h3></a>
+            </div>
+        </div>
+    {% endif %}
+    {% for link in vk_links %}
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="d3_image">
+                <img class="img-responsive img-rounded" src="{{ link }}" alt=""/>
+            </div>
+        </div>
+    {% endfor %}
+       <div id="photo_row_90386736_436596011" class="photos_row " style="background-image: url(https://pp.vk.me/c628426/v628426736/34668/1UH16wFyBIY.jpg); width: 185px; height: 127px">
+  <a href="/photo90386736_436596011" onclick="if (cur.cancelClick) return (cur.cancelClick = false); return showPhoto('90386736_436596011', 'album90386736_237729907', {img: this, root: 1}, event)"></a>
+</div>
+
+{% endblock %}

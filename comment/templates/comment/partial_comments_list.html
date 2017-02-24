@@ -1,0 +1,17 @@
+
+<div class="col-md-offset-1">
+    <h4><strong>Коментарі:</strong></h4>
+</div>
+<hr>
+<div>
+    {% for comment in comments %}
+
+        <p>{{comment.comments_text}}</p>
+        <img class="img-responsive ava" src="{{ comment.comments_user.avatar.url }}"
+             alt="{{comment.comments_user.username}}">
+        <p><strong>{{comment.comments_user.user.username}}</strong> <em>{{comment.comments_create}}</em></p>
+        <hr>
+
+    {% endfor %}
+</div>
+
