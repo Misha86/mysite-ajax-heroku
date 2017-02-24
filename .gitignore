@@ -1,6 +1,7 @@
 .idea
 .idea/
 git.txt
+Procfile.windows
 
 
 # Byte-compiled / optimized / DLL files
