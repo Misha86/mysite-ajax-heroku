@@ -668,3 +668,68 @@ button.btn.btn-default > a {
 #select li {
     display: block;
 }
+
+.face {
+    border-radius: 4px;
+    display:inline-block;
+    vertical-align:bottom;
+    width:24px;
+    height:24px;
+    margin:7px 10px 0px 0;
+    padding:0;
+    outline:none;
+    background:url(/static/img/icons.png) -0px 0 no-repeat;
+
+}
+
+.goog {
+    border-radius: 4px;
+    display:inline-block;
+    vertical-align:bottom;
+    width:24px;
+    height:24px;
+    margin:7px 10px 0px 0;
+    padding:0;
+    outline:none;
+    background:url(/static/img/icons.png) -24px 0 no-repeat;
+
+}
+
+.inl {
+    border-radius: 4px;
+    display:inline-block;
+    vertical-align:bottom;
+    width:24px;
+    height:24px;
+    margin:7px 10px 0px 0;
+    padding:0;
+    outline:none;
+    background:url(/static/img/icons.png) -48px 0 no-repeat
+
+}
+
+.odn {
+    border-radius: 4px;
+    display:inline-block;
+    vertical-align:bottom;
+    width:24px;
+    height:24px;
+    margin:7px 10px 0px 0;
+    padding:0
+    ;outline:none;
+    background:url(/static/img/icons.png) -72px 0 no-repeat
+
+}
+
+.vkon {
+    border-radius: 4px;
+    display:inline-block;
+    vertical-align:bottom;
+    width:24px;
+    height:24px;
+    margin:7px 10px 0px 0;
+    padding:0;
+    outline:none;
+    background:url(/static/img/icons.png) -96px 0 no-repeat
+
+}
