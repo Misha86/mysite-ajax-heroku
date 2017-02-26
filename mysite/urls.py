@@ -17,7 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.flatpages import views
 
 from admin.my_admin import misha
 
@@ -35,10 +34,6 @@ urlpatterns = [
     url(r'language/', include('languages.urls', namespace='language')),
     ]
 
-# Your other patterns here
-urlpatterns += [
-    url(r'^(?P<url>.*/)$', views.flatpage),
-]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,5 +1,5 @@
 
-<form id="form-massage" action="{% url 'blog:send_mail_ajax' %}" method="post">
+<form id="form-massage" action="{% url 'blog:send_mail_ajax' %}?next='/'" method="post">
     {% csrf_token %}
     {% for field in form %}
         {{ field.errors }}

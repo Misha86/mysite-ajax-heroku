@@ -42,8 +42,8 @@ urlpatterns = [
     # url(r'^(?P<item_slug>.*)/(?P<category_slug>.*)/(?P<article_slug>.*)/$', article_detail,
     #     name='article_detail'),
     url(r'^(?P<item_slug>.*)/list/$', photo, name='photo'),
-    url(r'^contact/$', TemplateView.as_view(template_name='contact_page.html')),
     url(r'^add_like/(?P<id>[0-9]+)/$', add_like, name='add_like'),
     #url(r'^3d-max/proposals/$', proposals, name='proposals'),
     ]
 
+    # url(r'^contact/$', TemplateView.as_view(template_name='contact_page.html')),
