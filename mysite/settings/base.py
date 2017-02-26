@@ -31,7 +31,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-SITE_ID = config('SITE_ID')
+SITE_ID = 1
 
 # SMTP backend(default) for send email
 
