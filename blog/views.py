@@ -97,7 +97,7 @@ def send_mail_ajax(request):
                 email = form.cleaned_data['email']
                 massage = form.cleaned_data['massage']
                 from_email = settings.EMAIL_HOST_USER
-                to_email = [settings.EMAIL_HOST_USER, 'mishaelitzem1@rambler.ru']
+                to_email = [settings.EMAIL_HOST_USER, 'mishaelitzem2@rambler.ru']
                 send_mail(email, massage, from_email, to_email, fail_silently=False)
 
                 form = SendMassageForm()
