@@ -182,7 +182,7 @@ def login_ajax(request):
         path = '/'
     else:
         path = return_path
-    context["location"] = path
+    context["redirect_path"] = path
     if request.is_ajax() and request.method == 'POST':
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')

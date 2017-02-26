@@ -34,12 +34,6 @@ urlpatterns = [
     url(r'language/', include('languages.urls', namespace='language')),
     ]
 
-from django.contrib.flatpages import views
-
-urlpatterns += [
-    url(r'^about/$', views.flatpage, {'url': '/about/'}, name='about'),
-    url(r'^contacts/$', views.flatpage, {'url': '/contacts/'}, name='contacts'),
-    ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
