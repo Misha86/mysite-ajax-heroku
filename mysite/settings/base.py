@@ -300,4 +300,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
-FIXTURE_DIRS = [os.path.join(BASE_DIR, 'navigation', 'fixtures', 'navigation')]
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, 'navigation', 'fixtures', 'navigation'),
+    os.path.join(BASE_DIR, 'fixtures', 'flatpages')
+    ]
