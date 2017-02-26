@@ -33,6 +33,22 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 SITE_ID = 1
 
+# SMTP backend(default) for send email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'                    # Имя хоста используемое для отправки электронных писем. По умолчанию 'localhost'
+EMAIL_HOST_USER = 'mpolishcuk1986@gmail.com'     # Имя пользователя используемое при подключении к SMTP серверу указанному в EMAIL_HOST
+EMAIL_HOST_PASSWORD = '0967478910m'                 # Пароль для подключения к SMTP сервера, который указан в EMAIL_HOST
+EMAIL_SUBJECT_PREFIX = '[Django]'              # Префикс добавляемый к теме электронного письма
+EMAIL_PORT = 587                               # Порт, используемый при подключении к SMTP серверу указанному в EMAIL_HOST 2525.
+EMAIL_USE_TLS = True                         # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 587 порт .
+#EMAIL_USE_SSL = True                          # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 465 порт.
+
+LOGOUT_URL = 'loginsys:logout'                    # '/auth/logout/'
+
+DEFAULT_FROM_EMAIL = 'mishaelitzem2@rambler.ru'
+
 # Настройка предусматривает отправку разработчикам сайта сообщений обо всех необработанных исключениях по электронной почте
 ADMINS = [
     ("Михайло Поліщук", "mishaelitzem2@rambler.ru"),
@@ -168,23 +184,6 @@ LOGIN_URL = '/auth/login/'
 PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 MESSAGE_LEVEL = message_constants.DEBUG
-
-
-# SMTP backend(default) for send email
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.gmail.com'                    # Имя хоста используемое для отправки электронных писем. По умолчанию 'localhost'
-EMAIL_HOST_USER = "mpolishchuk1986@gmail.com"      # Имя пользователя используемое при подключении к SMTP серверу указанному в EMAIL_HOST
-EMAIL_HOST_PASSWORD = '0967478910m'                 # Пароль для подключения к SMTP сервера, который указан в EMAIL_HOST
-EMAIL_SUBJECT_PREFIX = '[Django]'              # Префикс добавляемый к теме электронного письма
-EMAIL_PORT = 587                               # Порт, используемый при подключении к SMTP серверу указанному в EMAIL_HOST 2525.
-EMAIL_USE_TLS = True                         # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 587 порт .
-#EMAIL_USE_SSL = True                          # Указывает использовать ли TLS (защищенное) соединение с SMTP сервером. По умолчанию использует 465 порт.
-
-LOGOUT_URL = 'loginsys:logout'                    # '/auth/logout/'
-
-DEFAULT_FROM_EMAIL = 'mishaelitzem2@rambler.ru'
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
