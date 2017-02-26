@@ -50,7 +50,7 @@ $('#login').on('submit', function(event){
         // handle a successful response
         success : function(data) {
             if (data.user) {
-                location = '/';
+                location = data.redirect_path;
                 console.log("success"); // another sanity check
             }
             else {

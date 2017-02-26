@@ -10,6 +10,7 @@ from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse
 
 
 User = get_user_model()
@@ -175,14 +176,6 @@ from django.http import JsonResponse
 
 def login_ajax(request):
     context = {}
-    return_path = request.META.get('HTTP_REFERER', '/')
-    if 'next' in request.GET:
-        path = request.GET['my_redirect_field']
-    if return_path == request.build_absolute_uri():
-        path = '/'
-    else:
-        path = return_path
-    context["redirect_path"] = path
     if request.is_ajax() and request.method == 'POST':
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
@@ -193,6 +186,7 @@ def login_ajax(request):
             messages.success(request, _('Вітаю Вас на сайті, ' + username + '! Останій раз на сайті Ви були ' +
                                         str(last_login) + '.'), extra_tags='success')
             context['user'] = user.username
+            context["redirect_path"] = '/'
             return JsonResponse(context)
         elif not username and password:
             context['login_error_username'] = "Обов'язково введіть ім'я!"
