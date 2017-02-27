@@ -1,13 +1,5 @@
 [
 {
-  "model": "blog.tag",
-  "pk": 2,
-  "fields": {
-    "tag_title": "3d",
-    "tag_name": "3d"
-  }
-},
-{
   "model": "blog.article",
   "pk": 2,
   "fields": {
