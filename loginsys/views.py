@@ -8,10 +8,8 @@ from loginsys.form import (ProfileCreationForm,
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth import update_session_auth_hash
-# from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
-
+from django.http import JsonResponse
 
 User = get_user_model()
 
@@ -154,26 +152,6 @@ def delete(request, id=None):
     return render(request, 'profile_delete_form.html', context)
 
 
-# from django.contrib.contenttypes.models import ContentType
-#
-#
-# def show_users(request, ct, ids):
-#     model = get_object_or_404(ContentType, id=ct)
-#     queryset = model.get_all_objects_for_this_type()
-#     users = []
-#     users_ids = ids.split(',')
-#     if len(users_ids) > 1:
-#         for user_id in users_ids:
-#             content = queryset.get(pk=user_id)
-#             users.append(content)
-#     else:
-#         users = queryset.get(pk=ids)
-#     return render(request, 'show_user_from_admin.html', {'users': users})
-
-
-from django.http import JsonResponse
-
-
 def login_ajax(request):
     context = {}
     if request.is_ajax() and request.method == 'POST':
@@ -185,22 +163,19 @@ def login_ajax(request):
             auth.login(request, user)
             messages.success(request, _('Вітаю Вас на сайті, ' + username + '! Останій раз на сайті Ви були ' +
                                         str(last_login) + '.'), extra_tags='success')
-            context['user'] = user.username
-            context["redirect_path"] = '/'
-            return JsonResponse(context)
-        elif not username and password:
-            context['login_error_username'] = "Обов'язково введіть ім'я!"
-            return JsonResponse(context)
-        elif username and not password:
-            context['username'] = username
-            context['login_error_password'] = "Обов'язково введіть пароль!"
-            return JsonResponse(context)
-        elif not username and not password:
-            context['login_error_username_password'] = "Ви не ввели жодних даних!"
-            return JsonResponse(context)
+            context['form_valid'] = True
+
         else:
-            context['login_error'] = 'Користувач не знайдений!'
-            return JsonResponse(context)
+            if not username and password:
+                context['login_error_username'] = "Обов'язково введіть ім'я!"
+            elif username and not password:
+                context['username'] = username
+                context['login_error_password'] = "Обов'язково введіть пароль!"
+            elif not username and not password:
+                context['login_error_username_password'] = "Ви не ввели жодних даних!"
+            else:
+                context['login_error'] = 'Користувач не знайдений!'
+        return JsonResponse(context)
     else:
         context['username'] = ''
         context['password'] = ''

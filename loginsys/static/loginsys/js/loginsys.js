@@ -49,35 +49,33 @@ $('#login').on('submit', function(event){
 
         // handle a successful response
         success : function(data) {
-            if (data.user) {
-                location = data.redirect_path;
-                console.log("success"); // another sanity check
-            }
-            else {
+            if(data.form_valid) {
+                console.log('succes');
+                location.href = '/';
+            } else {
                 $('.errorlist').remove();
+                var errorId = 'login_error';
+                var invalidMessage;
                 if (data.login_error_username && $('#username').val() == ''){
-                    $('#login_error_username').html("<label id='login_error_username' class='control-label errorlist'><em>"
-                    + data.login_error_username +"</em></label>");
-                    console.log(data.login_error_username);
+                    errorId = 'login_error_username';
+                    invalidMessage = data.login_error_username;
                 }
                 else if (data.login_error_password && $('#password').val() == ''){
-                    $('#login_error_password').html("<label id='login_error_username' class='control-label errorlist'><em>"
-                    + data.login_error_password +"</em></label>");
-                    console.log(data.login_error_password);
+                    errorId = 'login_error_password';
+                    invalidMessage = data.login_error_password;
                 }
                 else if (data.login_error_username_password && $('#username').val() == ''  && $('#password').val() == ''){
-                    $('#login_error').html("<label id='login_error_username' class='control-label errorlist'><em>"
-                    + data.login_error_username_password +"</em></label>");
-                    console.log(data.login_error_username_password);
+                    invalidMessage = data.login_error_username_password;
                 }
                 else if (data.login_error){
-                    $('#password').val('')
-                    $('#login_error').html("<label id='login_error_username' class='control-label errorlist'><em>"
-                    + data.login_error +"</em></label>");
-                    console.log(data.login_error);
+                    $('#password').val('');
+                    invalidMessage = data.login_error;
                 }
+
+                $('#' + errorId).html("<label id=" + errorId + " class='control-label errorlist'><em>" +
+                invalidMessage + "</em></label>");
+                console.log(invalidMessage);
             }
-            //$('#username').val(''); // remove the value from the input
         },
 
         // handle a non-successful response
@@ -105,40 +103,3 @@ $(function() {
 
         });
 });
-
-//$( function() {
-//    $( "#login" ).dialog({
-//        autoOpen: false,
-//        width: 400,
-//        show: {
-//          effect: "blind",
-//          duration: 1000
-//        },
-//        hide: {
-//          effect: "explode",
-//          duration: 1000
-//        }
-//        //buttons: [
-//        //    {
-//        //        text: "Ok",
-//        //        click: function() {
-//        //            $( this ).dialog( "close" );
-//        //        }
-//        //    },
-//        //    {
-//        //        text: "Cancel",
-//        //        click: function() {
-//        //            $( this ).dialog( "close" );
-//        //        }
-//        //    }
-//        //]
-//    });
-//
-//    $( "#opener" ).click(function( event ) {
-//        $( "#login" ).dialog( "open" );
-//        event.preventDefault();
-//    });
-//    $( "#cancel" ).click(function() {
-//        $( "#login" ).dialog( "close" );
-//    });
-//});
