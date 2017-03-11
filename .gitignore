@@ -3,7 +3,7 @@
 git.txt
 Procfile.windows
 staticfiles/
-
+media_root/
 
 
 # Byte-compiled / optimized / DLL files
