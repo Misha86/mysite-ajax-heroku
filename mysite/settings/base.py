@@ -299,18 +299,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 AWS_S3_SECURE_URLS = False
 AWS_QUERYSTRING_AUTH = False
-AWS_STORAGE_BUCKET_NAME = 'misha-86-media'
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'misha-86-media'
+AWS_S3_HOST = "s3-us-west-2.amazonaws.com"
 
-AWS_S3_CUSTOM_DOMAIN = 's3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
 MEDIAFILES_LOCATION = 'media'
-
-MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 
 DEFAULT_FILE_STORAGE = 'mysite.custom_storages.MediaStorage'
 
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
