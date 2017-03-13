@@ -1,4 +1,5 @@
 from mysite.settings.base import *
+from .amason_media import *
 
 
 # try:
