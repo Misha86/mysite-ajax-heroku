@@ -33,15 +33,18 @@ class ProfileCreationForm(forms.ModelForm):
     date_of_birth = forms.CharField(label=_("Дата народження"), required=False,
                                     widget=CalendarWidget(format='%Y-%m-%d',
                                                           attrs={'class': 'form-control',
-                                                                 'placeholder': _('дата народження')}))
+                                                                 'placeholder': _('дата народження'),
+                                                                 'autocomplete': 'off'}))
 
     password1 = forms.CharField(label=_("Password"),
                                 widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                                                  'placeholder': _('введіть пароль')},
+                                                                  'placeholder': _('введіть пароль'),
+                                                                  'autocomplete': 'off'},
                                                            render_value=True))
     password2 = forms.CharField(label=_("Password confirmation"),
                                 widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                                                  'placeholder': _('повторіть пароль')}))
+                                                                  'placeholder': _('повторіть пароль'),
+                                                                  'autocomplete': 'off'}))
     # sex = forms.CharField(label=_("Стать"), max_length=20,
     #                       widget=forms.Select(choices=(('Man', _('Чоловік')), ('Woman', _('Жінка'))),
     #                                           attrs={'class': 'form-control', 'id': 'select'}))
@@ -105,26 +108,9 @@ class ProfileCreationForm(forms.ModelForm):
         if not email:
             raise forms.ValidationError(_("Це поле обов'язкове."), code='require')
         elif email_exists:
-            raise forms.ValidationError(_("Такий email вже зареєстрований.", code='email_exists'))
+            raise forms.ValidationError(_("Такий email вже зареєстрований."), code='email_exists')
         else:
             return email
-
-    def clean_avatar(self):
-        avatar = self.cleaned_data.get("avatar")
-        avatar_man = '/static/loginsys/img/unknow_user_man.jpg'
-        avatar_woman = '/static/loginsys/img/unknow_user_woman.jpg'
-        sex = self.cleaned_data.get("sex")
-        if not avatar:
-            if sex == 'Man':
-                avatar = avatar_man
-            elif sex == 'Woman':
-                avatar = avatar_woman
-        elif avatar:
-            if avatar == avatar_man and sex == 'Woman':
-                avatar = avatar_woman
-            elif avatar == avatar_woman and sex == 'Man':
-                avatar = avatar_man
-        return avatar
 
     def save(self, commit=True):
         user = super(ProfileCreationForm, self).save(commit=False)
@@ -137,9 +123,12 @@ class ProfileCreationForm(forms.ModelForm):
 class ProfileUpdateForm(ProfileCreationForm):
     password = forms.CharField(label=_("Old password"),
                                widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                                                 'placeholder': _('введіть старий пароль')}))
-    username = forms.CharField(label=_("Логін"), disabled=True, widget=forms.TextInput(attrs={'class': 'form-control', 'rows': 4,
-                                                                                              'placeholder': _('логін')}))
+                                                                 'placeholder': _('введіть старий пароль'),
+                                                                 'autocomplete': 'off'}))
+    username = forms.CharField(label=_("Логін"), disabled=True, widget=forms.TextInput(
+        attrs={'class': 'form-control',
+               'rows': 4,
+               'placeholder': _('логін')}))
 
     class Meta(ProfileCreationForm.Meta):
         model = User

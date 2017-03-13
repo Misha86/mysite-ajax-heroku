@@ -59,6 +59,20 @@ class Profile(models.Model):
     def natural_key(self):                 # natural key for serialization also for serialization for manage.py dumpdata --natural-foreign
         return [self.user.username, self.user.get_full_name(), self.avatar.url]
 
+    def save(self, *args, **kwargs):
+        avatar_man = 'upload/unknowen_users/unknow_user_man.jpg'
+        avatar_woman = 'upload/unknowen_users/unknow_user_woman.jpg'
+        if not self.avatar:
+            if self.sex == 'Man':
+                self.avatar = avatar_man
+            elif self.sex == 'Woman':
+                self.avatar = avatar_woman
+        elif self.avatar:
+            if self.avatar == avatar_man and self.sex == 'Woman':
+                self.avatar = avatar_woman
+            elif self.avatar == avatar_woman and self.sex == 'Man':
+                self.avatar = avatar_man
+        super(Profile, self).save(*args, **kwargs)
 
 
 
