@@ -74,6 +74,9 @@ def start_page(request):
     current_page = Paginator(users, 6)
     page_number = request.GET.get('page', 1)
     users_list = current_page.page(page_number)
+
+    request.session['color'] = 'blue'
+
     context = {
         'form': form,
         'users': users_list,

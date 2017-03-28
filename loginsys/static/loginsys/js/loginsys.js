@@ -16,6 +16,7 @@ function getCookie(name) {
 }
 
 var csrftoken = getCookie('csrftoken');
+var color = getCookie('color');
 
 
 function csrfSafeMethod(method) {
@@ -40,7 +41,7 @@ $('#login').on('submit', function(event){
     $.ajax({
         type : "POST", // http method
         async: true,
-        url : "/auth/login_ajax/", // the endpoint
+        url : "/auth/login_ajax/",// the endpoint
         data : {
             username : $('#username').val(),  // data sent with the post request
             password : $('#password').val()
@@ -49,8 +50,10 @@ $('#login').on('submit', function(event){
 
         // handle a successful response
         success : function(data) {
+            console.log(color);
+            //console.log({{ request.session.color }});
             if(data.form_valid) {
-                console.log('succes');
+                console.log(request.session.color);
                 location.href = '/';
             } else {
                 $('.errorlist').remove();
